@@ -64,7 +64,22 @@
             android:text=""
             android:textSize="14sp"
             android:textColor="#999999"
+<<<<<<< HEAD
             android:layout_marginBottom="30dp" />
+=======
+            android:layout_marginBottom="20dp" />
+
+        <!-- 🔹 AUCA Button -->
+        <Button
+            android:id="@+id/btn_auca"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Visit AUCA"
+            android:textColor="#ffffff"
+            android:background="#2196F3"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
+>>>>>>> 3771dc5 (Update Students.java model)
 
     </LinearLayout>
 
@@ -79,4 +94,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20dp" />
 
+<<<<<<< HEAD
 </RelativeLayout>
+=======
+</RelativeLayout>
+>>>>>>> 3771dc5 (Update Students.java model)

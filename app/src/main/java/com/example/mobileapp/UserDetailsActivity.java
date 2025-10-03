@@ -1,6 +1,10 @@
 package com.example.mobileapp;
 
 import android.content.Intent;
+<<<<<<< HEAD
+=======
+import android.net.Uri;
+>>>>>>> 3771dc5 (Update Students.java model)
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 public class UserDetailsActivity extends AppCompatActivity {
 
     private TextView tvWelcome, tvUserInfo, tvLoginTime;
+<<<<<<< HEAD
     private Button btnLogout;
+=======
+    private Button btnLogout, btnAUCA; // Added AUCA button
+>>>>>>> 3771dc5 (Update Students.java model)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,10 @@ public class UserDetailsActivity extends AppCompatActivity {
         tvUserInfo = findViewById(R.id.tv_user_info);
         tvLoginTime = findViewById(R.id.tv_login_time);
         btnLogout = findViewById(R.id.btn_logout);
+<<<<<<< HEAD
+=======
+        btnAUCA = findViewById(R.id.btn_auca); // Initialize AUCA button
+>>>>>>> 3771dc5 (Update Students.java model)
     }
 
     private void displayUserInfo() {
@@ -56,5 +68,17 @@ public class UserDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
+<<<<<<< HEAD
+=======
+
+        btnAUCA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open AUCA website in browser
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.auca.ac.rw/"));
+                startActivity(browserIntent);
+            }
+        });
+>>>>>>> 3771dc5 (Update Students.java model)
     }
 }
