@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.mobileapp.model.Students;
+import com.example.mobileapp.model.StudentDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,9 +56,12 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        if (username.equals("admin") && password.equals("password")) {
+        // Check if user exists in StudentDatabase
+        Students student = StudentDatabase.getStudentByUsername(username);
+
+        if (student != null && student.getPassword().equals(password)) {
             Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-            navigateToUserDetails(username);
+            navigateToUserDetails(student);
         } else {
             Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show();
         }
@@ -67,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void navigateToUserDetails(String username) {
+    private void navigateToUserDetails(Students student) {
         Intent intent = new Intent(MainActivity.this, UserDetailsActivity.class);
-        intent.putExtra("username", username);
+        intent.putExtra("username", student.getUsername());
+        intent.putExtra("fullName", student.getFullName());
+        intent.putExtra("email", student.getEmail());
         startActivity(intent);
     }
 }

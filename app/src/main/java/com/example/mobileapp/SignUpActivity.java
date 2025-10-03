@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.mobileapp.model.Students;
+import com.example.mobileapp.model.StudentDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -48,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
         btnBackToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finish(); // goes back to login
             }
         });
     }
@@ -79,14 +81,29 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
+        // Generate a simple username from email
+        String username = email.split("@")[0];
+
+        // Determine gender
+        String gender = (rgGender.getCheckedRadioButtonId() == R.id.rb_male) ? "Male" : "Female";
+
+        // Create Students object
+        Students student = new Students(username, fullName, email, password, gender);
+
+        // Add student to in-memory database
+        StudentDatabase.addStudent(student);
+
         Toast.makeText(this, "Sign up successful!", Toast.LENGTH_SHORT).show();
-        navigateToUserDetails(fullName, email);
+
+        // Navigate to UserDetailsActivity
+        navigateToUserDetails(student);
     }
 
-    private void navigateToUserDetails(String fullName, String email) {
+    private void navigateToUserDetails(Students student) {
         Intent intent = new Intent(SignUpActivity.this, UserDetailsActivity.class);
-        intent.putExtra("fullName", fullName);
-        intent.putExtra("email", email);
+        intent.putExtra("username", student.getUsername());
+        intent.putExtra("fullName", student.getFullName());
+        intent.putExtra("email", student.getEmail());
         startActivity(intent);
     }
 }
